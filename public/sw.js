@@ -1,16 +1,20 @@
 const CACHE_NAME = 'chicorei-pwa-v1';
+// Em /public, use caminhos relativos para manter escopo correto
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/styles.css',
-  '/script.js',
-  '/novidades.html',
-  '/manifest.json'
+  'index.html',
+  'styles.css',
+  'script.js',
+  'novidades.html',
+  'manifest.json'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
+    caches.open(CACHE_NAME).then(async (cache) => {
+      await Promise.allSettled(
+        ASSETS.map((path) => cache.add(path))
+      );
+    })
   );
 });
 
@@ -24,6 +28,14 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   const req = event.request;
+  if (req.method !== 'GET') return;
+  // Para navegações, tenta cache do index
+  if (req.mode === 'navigate') {
+    event.respondWith(
+      caches.match('index.html').then((cached) => cached || fetch(req))
+    );
+    return;
+  }
   event.respondWith(
     caches.match(req).then((cached) => cached || fetch(req))
   );

@@ -23,7 +23,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').catch(() => {});
+        navigator.serviceWorker.register('sw.js').catch(() => {});
       });
     }
   </script>
@@ -40,6 +40,7 @@
     "knowsAbout": ["camisetas personalizadas", "moda feminina", "moda masculina", "acessórios"]
   }
   </script>
+  <script src="script.js" defer></script>
 </head>
 <body class="campaign-page">
   <header class="site-header">
