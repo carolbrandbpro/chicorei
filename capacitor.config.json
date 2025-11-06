@@ -1,0 +1,8 @@
+{
+  "appId": "com.carolinebrand.chicorei",
+  "appName": "ChicoReiAfiliada",
+  "webDir": "public",
+  "server": {
+    "androidScheme": "https"
+  }
+}

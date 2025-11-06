@@ -5,7 +5,11 @@
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "cap:init": "npx cap init 'Chico Rei Afiliada' com.carolinebrand.chicorei --web-dir .",
+    "cap:add:android": "npx cap add android",
+    "cap:sync": "npx cap sync android",
+    "cap:open": "npx cap open android"
   },
   "repository": {
     "type": "git",
@@ -19,8 +23,13 @@
   },
   "homepage": "https://github.com/carolinebrandb/chicorei#readme",
   "dependencies": {
+    "@capacitor/android": "^5.7.8",
+    "@capacitor/core": "^5.7.7",
     "cheerio": "^1.1.2",
     "express": "^5.1.0",
     "http-proxy-middleware": "^3.0.5"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^5.7.7"
   }
 }

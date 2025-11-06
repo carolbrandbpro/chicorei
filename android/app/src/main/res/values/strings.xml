@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ChicoReiAfiliada</string>
+    <string name="title_activity_main">ChicoReiAfiliada</string>
+    <string name="package_name">com.carolinebrand.chicorei</string>
+    <string name="custom_url_scheme">com.carolinebrand.chicorei</string>
+</resources>
