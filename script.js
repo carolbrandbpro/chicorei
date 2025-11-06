@@ -52,3 +52,33 @@
   }
 })();
 // (removida a lógica do submenu de busca)
+// Abrir links externos no navegador do sistema (fallback para _blank no web)
+(function () {
+  const isNative = !!(window.Capacitor && typeof window.Capacitor.isNativePlatform === 'function' && window.Capacitor.isNativePlatform());
+  const browserPlugin = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Browser;
+  const openExternal = async (url) => {
+    try {
+      if (isNative && browserPlugin && typeof browserPlugin.open === 'function') {
+        await browserPlugin.open({ url });
+      } else {
+        window.open(url, '_blank', 'noopener');
+      }
+    } catch (err) {
+      window.open(url, '_blank', 'noopener');
+    }
+  };
+
+  const anchors = document.querySelectorAll('a[href]');
+  anchors.forEach((a) => {
+    const href = a.getAttribute('href');
+    if (!href) return;
+    const isHttp = /^https?:\/\//.test(href);
+    const isExternal = isHttp && !href.includes(location.host);
+    if (isExternal) {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        openExternal(href);
+      });
+    }
+  });
+})();

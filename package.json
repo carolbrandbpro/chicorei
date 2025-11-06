@@ -24,6 +24,7 @@
   "homepage": "https://github.com/carolinebrandb/chicorei#readme",
   "dependencies": {
     "@capacitor/android": "^5.7.8",
+    "@capacitor/browser": "^5.0.6",
     "@capacitor/core": "^5.7.7",
     "cheerio": "^1.1.2",
     "express": "^5.1.0",
